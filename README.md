@@ -1,1 +1,34 @@
-项目介绍：SatLine OS v2.0SatLine OS 是一个基于 ESP32 和 TFT 屏幕（由 TFT_eSPI 驱动）开发的嵌入式微型系统演示项目。它展示了如何通过简单的状态机逻辑和图形库，在资源受限的 MCU 上构建具有交互感的 GUI 界面。✨ 核心功能酷炫开机动画：模拟 Linux 跑码过程，带进度条加载效果。图形化菜单引擎：支持平滑的菜单切换动画和按钮交互。网络功能集：NTP 网络时钟：自动连接 WiFi 并获取阿里云/Windows 时间。WiFi 扫描器：可视化扫描周围信号，并以信号强度条（RSSI）显示。Web Portal 配网：内置 DNS 劫持和 Web 服务器，支持通过手机浏览器为设备配置 WiFi 密码。趣味游戏：内置经典的“恐龙跳一跳”小游戏，支持物理按键控制跳跃。🛠️ 硬件需求控制器：ESP32 (DevKit V1 或兼容板)显示屏：ST7735 或 ILI9163 (160x128 分辨率，SPI 接口)交互按键：4 个物理按键（上、下、确认、返回）🔌 引脚定义 (Default)功能ESP32 引脚BTN_UPGPIO 27BTN_DOWNGPIO 25BTN_OKGPIO 26BTN_BACKGPIO 33LCD CS(需在 User_Setup.h 配置)LCD RST(需在 User_Setup.h 配置)LCD DC(需在 User_Setup.h 配置)🚀 快速上手安装库：在 Arduino IDE 中安装 TFT_eSPI 库。配置屏幕：在 TFT_eSPI 库目录下找到 User_Setup.h，根据你的屏幕型号和接线修改驱动类型和引脚。上传代码：选择对应的 ESP32 开发板并上传。操作：使用 UP/DOWN 切换菜单。OK 进入功能。BACK 返回主菜单。💡 建议在 GitHub 上补充的内容（优化建议）展示截图/GIF：GitHub 上最吸引人的是视觉效果。建议录制一段开机动画和游戏演示的视频转成 GIF 放在 README 开头。User_Setup.h 示例：很多新手会卡在 TFT_eSPI 的配置上。你可以把你的 User_Setup.h 配置内容也作为一个文件放在仓库里。代码改进建议 (针对你的代码)：内存优化：HTML_CONTENT 可以考虑放入 PROGMEM 以节省 RAM。稳定性：在 playDino 函数中，tft.fillScreen(TFT_BLACK) 可能会导致屏幕闪烁，建议后续改为使用 Sprite（画布） 局部刷新。依赖声明：明确标注需要 TFT_eSPI 库。
+网络时钟	NTP同步，显示北京时间
+WiFi扫描器	扫描附近AP，显示信号强度
+DNS配网	热点配网，保存WiFi信息
+恐龙游戏	Chrome风格黑白跑酷，带最高分
+摇杆测试	圆环可视化，显示X/Y偏移值
+菜单系统	5项功能，带平滑切换动画
+开机动画	跑码风格，进度条加载
+💡 代码亮点
+摇杆校准 - 你用实测数据（X中心1867, Y中心2000）做了精确映射
+
+游戏物理 - 重力加速度0.8，跳跃-7.5，手感不错
+
+WiFi配网 - DNS劫持方式，比SmartConfig稳定
+
+菜单动画 - 5帧缓动，视觉效果平滑
+
+📝 建议的GitHub描述（简短版）
+markdown
+# SatLine OS
+
+ESP32多功能掌机固件
+- 网络时钟 | WiFi扫描 | DNS配网 | 恐龙游戏 | 摇杆测试
+🔧 建议改进（可选）
+EEPROM保存WiFi信息 - 配网后下次开机自动连接
+
+游戏难度曲线 - 速度随分数增加，更耐玩
+
+低功耗模式 - 时钟界面可以进入轻度休眠
+
+⭐ 总结
+这是一个完成度很高的ESP32综合项目，涵盖了物联网、嵌入式UI、游戏开发多个方向。作为16岁的作品，拿去GitHub上展示完全没问题。
+
+准备好上传了吗？需要我帮你整理最终的README吗？
+
